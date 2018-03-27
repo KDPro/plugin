@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>分页</title>
+    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="paginator.css">
+</head>
+<body>
+<!--分页所需HTML-->
+    <div class="paginator clearfix" style="text-align: center">
+        <div class="totalCount">共 <span>10</span> 条</div>
+        <div class="pageLimit">
+            <!--//调用分页js 所需要的id名称 自己取名字-->
+            <ul id="pageLimit"></ul>
+        </div>
+        <div class="pageSelect">
+            <form class="form-inline">
+                <!--选择每页显示多少条数据-->
+                <select class="form-control" id="select2">
+                    <option value=""><span>10</span>条/页</option>
+                    <option value=""><span>30</span>条/页</option>
+                    <option value=""><span>50</span>条/页</option>
+                </select>
+            </form>
+        </div>
+        <div class="toPage">
+            <form class="form-inline">
+                <span>跳至</span>
+                <input type="number" class="form-control">
+                <span>页</span>
+            </form>
+        </div>
+    </div>
+    <script src="jquery.min.js"></script>
+    <script src="bootstrap.js"></script>
+    <script src="bootstrap-paginator.js"></script>
+    <script>
+        //分页的方法值
+        $('#pageLimit').bootstrapPaginator({
+            currentPage: 3,//当前的请求页面。
+            totalPages: 20,//一共多少页。
+            size:"normal",//应该是页眉的大小。
+            bootstrapMajorVersion: 3,//bootstrap的版本要求。
+            alignment:"right",
+            numberOfPages:5,//一页列出多少数据。
+            itemTexts: function (type, page, current) {//如下的代码是将页眉显示的中文显示我们自定义的中文。
+                switch (type) {
+                    case "first": return "首页";
+                    case "prev": return "上一页";
+                    case "next": return "下一页";
+                    case "last": return "末页";
+                    case "page": return page;
+                }
+            }});
+    </script>
+</body>
+</html>
